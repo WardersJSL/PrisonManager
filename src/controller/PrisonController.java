@@ -30,10 +30,10 @@ public class PrisonController {
 		return false;
 	}
 	
-	public boolean AddPrisoner() {			//죄수등록
+	public boolean AddPrisoner(Prisoner newPrisoner) {			//죄수등록
 		return false;
 	}
-	public boolean DeletePrisoner() {		//죄수삭제
+	public boolean DeletePrisoner(String prisonerNo) {		//죄수삭제
 		return false;
 	}
 	
@@ -46,8 +46,8 @@ public class PrisonController {
 		return foundPrisoners;
 	}
 	
-	public void ShowAll() {				//죄수전체출력
-		
+	public ArrayList<Prisoner> ShowAll() {				//죄수전체출력
+		return ImsiPrisoners;
 	}
 	
 	
