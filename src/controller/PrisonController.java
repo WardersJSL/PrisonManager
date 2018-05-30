@@ -6,7 +6,7 @@ import model.Prisoner;
 
 //교도소 관리 클래스(back-end)
 //유효성검사
-public class PrisonManager {
+public class PrisonController {
 	private ArrayList<Prisoner> ImsiPrisoners = new ArrayList<Prisoner>();		// 죄수들
 	
 	public void PrisonManager(){
