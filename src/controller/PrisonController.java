@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 
 import model.Prisoner;
+import view.ConsoleViewer;
 
 //교도소 관리 클래스(back-end)
 //유효성검사
@@ -36,23 +37,72 @@ public class PrisonController {
 	
 	// 죄수 정보 유효성 검사
 	public boolean isValidPrisoner(Prisoner prisoner) {
-		boolean x=false;
-		if(prisoner.getName().length()>=0&&prisoner.getName().length()<=20) {
-			if(prisoner.getCrime()==prisoner.getCrime().DECEIVE) {
-				
-			}
+		boolean x=true;
+		int count = 0;
+		if(!isValidPrisonerNo(prisoner.getPrinum())){
+			x=false;
 		}
+		
+		if(prisoner.getName().length()>=0&&prisoner.getName().length()<=20) {
+			
+		}else {
+			x=false;
+		}
+		
+		switch(prisoner.getCrime()) {
+		case THEFT :
+		case DECEIVE :
+		case MURDER :
+		case RAPE :
+		case VIOLENCE :
+		case DRUG :
+		case EMBEZZLE :break;
+		default : x = false;
+		}
+		switch(prisoner.getType()) {
+		case NORMAL :
+		case WATCH : 
+		case DRUG :
+		case EXECUTE :break;
+		default : x = false;
+		}
+		if(prisoner.getPenalty()>=0&&prisoner.getPenalty()<=0){
+		
+		}else {
+			x=false;
+		}
+		if(prisoner.getScore()>=-40&&prisoner.getScore()<=80) {
+		
+		}else {
+			x=false;
+		}
+		if(prisoner.getWork()>=0&&prisoner.getWork()<=99999) {
+			
+		}else {
+			x=false;
+		}
+		if(prisoner.isIll()==true||prisoner.isIll()==false) {
+			
+		}else {
+			x=false;
+		}
+		
 		return x;
 	}
 	
 	// 죄수번호 중복 검사
 	//   주어진 죄수번호와 이 클래스의 InsiPrisoners 리스트에 저장된 죄수들의 죄수번호 중 일치하는 값이 있는지 검사
 	public boolean isExistPrisonerNo(String prisonerNo) {
-		
-		return false;
+		boolean x = false;
+		if(prisonerNo.equals(ImsiPrisoners)) {
+			x = true;
+		}
+		return x;
 	}
 	
-	public boolean AddPrisoner(Prisoner prisonerNo) {			//죄수등록
+	public boolean AddPrisoner(Prisoner prisoner) {			//죄수등록
+		ConsoleViewer console = new ConsoleViewer();
+		console.enter(); //아직미완성0531
 		return false;
 	}
 	public boolean DeletePrisoner(String prinum) {		//죄수삭제
