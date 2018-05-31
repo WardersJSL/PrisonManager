@@ -10,7 +10,7 @@ import model.Prisoner.Type;
 
 //콘솔 UI 클래스
 public class ConsoleViewer {
-	// TODO: 설계를 완료하고 나서 구현을 시작하겠습니다.
+	// 설계를 완료하고 나서 구현을 시작하겠습니다.
 	private PrisonController prisonMgr;	// 교도소 관리자
 	Scanner sc = new Scanner(System.in);
 	
@@ -30,7 +30,7 @@ public class ConsoleViewer {
 		System.out.println("=======================");
 	}
 	
-	public void enter () { // 입소메뉴
+	public void enter() { // 입소메뉴
 		String prisonerNo, name;	// 죄수번호, 이름
 		int inputType;			// 죄수구분(정수형, 사용자 입력용)
 		int inputCrime;			// 죄목(정수형, 사용자 입력용)
@@ -237,8 +237,38 @@ public class ConsoleViewer {
 	
 	public void showAll() { // 전체출력
 		ArrayList<Prisoner> prisoners = prisonMgr.ShowAll();
-		
 		// 죄수가 없으면 죄수 없음 메시지 출력
-		//
+		if(prisonMgr.ShowAll().size() < 1) {
+			System.out.println("죄수가 없습니다.");
+			return;
+		}
+			for (int i = 0; i < prisoners.size(); i++) {
+			System.out.println("죄수번호 : " + prisoners.get(i).getPrinum());
+			System.out.println("이름 : " + prisoners.get(i).getName());
+			System.out.println("죄목 : " + prisoners.get(i).getCrime());
+			System.out.println("구분 : " + prisoners.get(i).getType());
+			System.out.println("형량 : " + prisoners.get(i).getPenalty() + "개월");
+			if(i < prisoners.size() - 1) {
+				System.out.println("================");
+			}
+			}
+		}
+	
+	
+	public int menuCheck() { // 사용자가 메뉴에서 입력한 값 체크
+		int menu = 0;
+		do {
+			try {
+			System.out.print("메뉴 = ");
+			menu = Integer.parseInt(sc.nextLine());
+			} catch (Exception e) {
+				System.out.println("잘못된 입력입니다.");
+			}
+			if(menu >= 1 && menu <= 5) {
+				return menu;
+			} else {
+				System.out.println("범위를 벗어났습니다.");
+			}
+		} while(true);
 	}
 }
