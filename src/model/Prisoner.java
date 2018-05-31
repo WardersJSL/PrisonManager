@@ -9,7 +9,7 @@ public class Prisoner {
 
 	
 	private String name;		 //이름
-	private String prisoner; 	// 죄수 
+	//private String prisoner; 	// 죄수 
 	private Crime crime; 	    // 죄목
 	private Type type;		   // 죄수구분 
 	private String prinum; 	  //죄수 번호 
@@ -20,14 +20,13 @@ public class Prisoner {
 
 	
 	// 생성자 메서드 
-	public Prisoner(String name, String prisoner, Crime crime, Type type, String prinum, int penalty, int score,
+	public Prisoner(String name, String prinum, Crime crime, Type type, int penalty, int score,
 			int work, boolean ill) {
 		super();
 		this.name = name;
-		this.prisoner = prisoner;
+		this.prinum = prinum;
 		this.crime = crime;
 		this.type = type;
-		this.prinum = prinum;
 		this.penalty = penalty;
 		this.score = score;
 		this.work = work;
@@ -41,12 +40,12 @@ public class Prisoner {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getPrisoner() {
-		return prisoner;
-	}
-	public void setPrisoner(String prisoner) {
-		this.prisoner = prisoner;
-	}
+//	public String getPrisoner() {
+//		return prisoner;
+//	}
+//	public void setPrisoner(String prisoner) {
+//		this.prisoner = prisoner;
+//	}
 	public Crime getCrime() {
 		return crime;
 	}
