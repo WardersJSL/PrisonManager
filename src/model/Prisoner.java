@@ -89,6 +89,42 @@ public class Prisoner {
 		this.ill = ill;
 	}
 	
+	// Type -> String
+	public String typeToString(Type type) {
+		switch(type) {
+		case DRUG:
+			return "마약사범";
+		case EXECUTE:
+			return "사형수";
+		case NORMAL:
+			return "일반";
+		case WATCH:
+			return "요시찰";
+		default:
+			return null;
+		}
+	}
 	
+	// Crime -> String
+	public String crimeToString(Crime crime) {
+		switch(crime) {
+		case DECEIVE:
+			return "사기";
+		case DRUG:
+			return "마약";
+		case EMBEZZLE:
+			return "횡령";
+		case MURDER:
+			return "살인";
+		case RAPE:
+			return "강간";
+		case THEFT:
+			return "절도";
+		case VIOLENCE:
+			return "폭행";
+		default:
+			return null;
+		}
+	}
 	
 }
