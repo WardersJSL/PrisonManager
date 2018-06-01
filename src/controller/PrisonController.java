@@ -8,7 +8,7 @@ import view.ConsoleViewer;
 //교도소 관리 클래스(back-end)
 //유효성검사
 public class PrisonController {
-	private ArrayList<Prisoner> ImsiPrisoners = new ArrayList<Prisoner>();		// 죄수들
+	private ArrayList<Prisoner> prisoners = new ArrayList<Prisoner>();		// 죄수들
 	
 	// 생성자
 	public PrisonController(){
@@ -94,7 +94,7 @@ public class PrisonController {
 	//   주어진 죄수번호와 이 클래스의 InsiPrisoners 리스트에 저장된 죄수들의 죄수번호 중 일치하는 값이 있는지 검사
 	public boolean isExistPrisonerNo(String prisonerNo) {
 		boolean x = false;
-		if(prisonerNo.equals(ImsiPrisoners)) {
+		if(prisonerNo.equals(prisoners)) {
 			x = true;
 		}
 		return x;
@@ -119,7 +119,7 @@ public class PrisonController {
 	}
 	
 	public ArrayList<Prisoner> ShowAll() {				//죄수전체출력
-		return ImsiPrisoners;
+		return prisoners;
 	}
 	
 	
