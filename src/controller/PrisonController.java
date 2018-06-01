@@ -94,19 +94,34 @@ public class PrisonController {
 	//   주어진 죄수번호와 이 클래스의 InsiPrisoners 리스트에 저장된 죄수들의 죄수번호 중 일치하는 값이 있는지 검사
 	public boolean isExistPrisonerNo(String prisonerNo) {
 		boolean x = false;
-		if(prisonerNo.equals(prisoners)) {
-			x = true;
+		for(int i = 0; i < prisoners.size(); i++) {
+			if(prisonerNo.equals(prisoners.get(i).getPrinum())) {
+				x = true;
+				break;
+			}
 		}
 		return x;
 	}
 	
 	public boolean AddPrisoner(Prisoner prisoner) {			//죄수등록
-		ConsoleViewer console = new ConsoleViewer();
-		console.enter(); //아직미완성0531
-		return false;
+		boolean x = false;
+		if(isValidPrisoner(prisoner)&&!isExistPrisonerNo(prisoner.getPrinum())){
+			x = prisoners.add(prisoner);
+		}
+		return x;
 	}
+	
 	public boolean DeletePrisoner(String prinum) {		//죄수삭제
-		return false;
+		boolean check = false;
+		
+		for(int i = 0; i < prisoners.size();i++) {
+			if(prinum == prisoners.get(i).getPrinum()) {
+				check =	prisoners.remove(prisoners.get(i));
+				break;
+			}
+		}
+	
+		return check;
 	}
 	
 	// 이름으로 검색하고, 이름이 일치하는 죄수 정보를 전부 추가해서 리스트로 반환
