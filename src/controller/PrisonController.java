@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import model.Prisoner;
 import view.ConsoleViewer;
@@ -106,7 +107,17 @@ public class PrisonController {
 		return false;
 	}
 	public boolean DeletePrisoner(String prinum) {		//죄수삭제
-		return false;
+		Scanner sc = new Scanner(System.in);
+		boolean check = false;
+		
+		for(int i = 0; i < prisoners.size();i++) {
+			if(prinum == prisoners.get(i).getPrinum()) {
+				check =	prisoners.remove(prisoners.get(i));
+				break;
+			}
+		}
+	
+		return check;
 	}
 	
 	// 이름으로 검색하고, 이름이 일치하는 죄수 정보를 전부 추가해서 리스트로 반환
