@@ -18,10 +18,10 @@ public class PrisonController {
 	// 죄수번호 유효성 검사
 	public boolean isValidPrisonerNo(String prisonerNo) {
 		boolean x = false;
-		if(prisonerNo.charAt(0)==0) {
-			if(prisonerNo.charAt(1)>='1'&&prisonerNo.charAt(1)<='2'){
+		if(prisonerNo.charAt(0)=='0') {
+			if(prisonerNo.charAt(1)=='1'||prisonerNo.charAt(1)=='2'){
 				if(prisonerNo.charAt(2)=='가'||prisonerNo.charAt(2)=='나'||prisonerNo.charAt(2)=='다'){
-					if(prisonerNo.charAt(3)>='1'&&prisonerNo.charAt(1)<='5'){
+					if(prisonerNo.charAt(3)>='1'&&prisonerNo.charAt(3)<='5'){
 						for(int i = 4; i < 8; i++) {
 							if(prisonerNo.charAt(i)>='0'&&prisonerNo.charAt(i)<='9'){
 								x=true;
@@ -38,12 +38,11 @@ public class PrisonController {
 	// 죄수 정보 유효성 검사
 	public boolean isValidPrisoner(Prisoner prisoner) {
 		boolean x=true;
-		int count = 0;
 		if(!isValidPrisonerNo(prisoner.getPrinum())){
 			x=false;
 		}
 		
-		if(prisoner.getName().length()>=0&&prisoner.getName().length()<=20) {
+		if(prisoner.getName().length()>=2&&prisoner.getName().length()<=20) {
 			
 		}else {
 			x=false;
@@ -66,11 +65,12 @@ public class PrisonController {
 		case EXECUTE :break;
 		default : x = false;
 		}
-		if(prisoner.getPenalty()>=0&&prisoner.getPenalty()<=0){
+		if(prisoner.getPenalty()>=1&&prisoner.getPenalty()<=9999){
 		
 		}else {
 			x=false;
 		}
+
 		if(prisoner.getScore()>=-40&&prisoner.getScore()<=80) {
 		
 		}else {
@@ -98,6 +98,7 @@ public class PrisonController {
 			if(prisonerNo.equals(prisoners.get(i).getPrinum())) {
 				x = true;
 				break;
+				
 			}
 		}
 		return x;
@@ -115,7 +116,7 @@ public class PrisonController {
 		boolean check = false;
 		
 		for(int i = 0; i < prisoners.size();i++) {
-			if(prinum == prisoners.get(i).getPrinum()) {
+			if(prinum.equals(prisoners.get(i).getPrinum())) {
 				check =	prisoners.remove(prisoners.get(i));
 				break;
 			}
@@ -128,7 +129,7 @@ public class PrisonController {
 	public ArrayList<Prisoner> FindPrisoner(String name) {		//죄수검색
 		ArrayList<Prisoner> foundPrisoners = new ArrayList<Prisoner>();
 		
-		for(int i = 0; i < foundPrisoners.size(); i++) {
+		for(int i = 0; i < prisoners.size(); i++) {
 		 if(prisoners.get(i).getName().equals(name)) {
 			 			 
 			 foundPrisoners.add(prisoners.get(i));
