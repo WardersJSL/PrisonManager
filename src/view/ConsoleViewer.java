@@ -18,6 +18,7 @@ public class ConsoleViewer {
 		prisonMgr = new PrisonController();
 	}
 	
+	// Todo: 추가된 메뉴 반영해 주세요
 	public void showMenu() { // 기본 메뉴
 		System.out.println("=======================");
 		System.out.println("  교도소 관리 프로그램");
@@ -270,5 +271,23 @@ public class ConsoleViewer {
 				System.out.println("범위를 벗어났습니다.");
 			}
 		} while(true);
+	}
+	
+	/**
+	 * 상벌점 부여 메뉴 실행
+	 */
+	public void giveScore() {
+		// 사용자에게 죄수번호를 입력받고 그 죄수에게 상벌점 입력
+		//   상점을 줄지 벌점을 줄지 선택
+		//   상벌점을 부여했을 때 범위를 넘어가는 값이 입력될 경우 메시지를 출력하고 작업 취소
+	}
+	
+	/**
+	 * 징계 실행
+	 */
+	public void punish() {
+		// 사용자에게 죄수번호를 입력받고 그 죄수에 대한 징계를 실행
+		//   상벌점이 -40인 죄수만 징계 가능
+		//   징계받은 죄수의 상벌점은 0으로 초기화(이 부분은 PrisonController.initScore() 메서드에서 처리함)
 	}
 }

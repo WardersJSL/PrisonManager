@@ -135,7 +135,6 @@ public class PrisonController {
 			 foundPrisoners.add(prisoners.get(i));
 		 }	
 		}
-		// Todo: 검색 코드 작성
 		
 		return foundPrisoners;
 	}
@@ -144,5 +143,27 @@ public class PrisonController {
 		return prisoners;
 	}
 	
+	/**
+	 * 상벌점 부여 처리 내부동작
+	 * @param prisonerNo 죄수번호
+	 * @param scoreToAdd 더할 상벌점(음수가 되면 벌점 부여)
+	 * @return 성공여부
+	 */
+	public boolean updateScore(String prisonerNo, int scoreToAdd) {
+		// 상벌점을 부여할 경우 범위를 벗어나는지 먼저 검사
+		
+		return false;
+	}
 	
+	/**
+	 * 징계 처리 내부동작
+	 * @param prisonerNo 죄수번호
+	 * @return 성공여부
+	 */
+	public boolean initScore(String prisonerNo) {
+		// 벌점이 -40점인 죄수만 징계 가능
+		// 징계를 받은 죄수의 벌점은 0으로 초기화
+		
+		return false;
+	}
 }
