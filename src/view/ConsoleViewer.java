@@ -220,18 +220,27 @@ public class ConsoleViewer {
 			System.out.println("이름이 일치하는 죄수가 없습니다.\n");
 		}
 		else {
+			System.out.println();
+			System.out.println("------------------------");
 			// 검색된 죄수(들)을 모두 출력
 			for(int i = 0; i < foundPrisoners.size(); i++) {
-				System.out.println("죄수번호 : " + foundPrisoners.get(i).getPrinum());
-				System.out.println("이름 : " + foundPrisoners.get(i).getName());
-				System.out.println("죄목 : " + "---");	// 나중에 수정
-				System.out.println("구분 : " + "---");	// 나중에 수정
-				System.out.println("형량 : " + foundPrisoners.get(i).getPenalty() + "개월");
+				Prisoner prisoner = foundPrisoners.get(i);
+				System.out.println("죄수번호 : " + prisoner.getPrinum());
+				System.out.println("이름 : " + prisoner.getName());
+				System.out.println("죄목 : " + prisoner.crimeToString(prisoner.getCrime()));
+				System.out.println("구분 : " + prisoner.typeToString(prisoner.getType()));
+				System.out.println("형량 : " + prisoner.getPenalty() + "개월");
+				if(prisoner.getScore() == 80)
+					System.out.println("가석방 심사대상");
+				if(prisoner.getScore() == -40)
+					System.out.println("징계대상");
+				// Todo: 징계횟수가 추가되면 징계횟수도 표시
 				if(i < foundPrisoners.size() - 1) {
-					System.out.println("================");
+					System.out.println("------------------------");
 				}
 			}
 			
+			System.out.println("------------------------");
 			System.out.println();	// 한 줄 개행
 		}
 	}
