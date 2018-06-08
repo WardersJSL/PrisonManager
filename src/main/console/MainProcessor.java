@@ -31,6 +31,14 @@ public class MainProcessor {
 				console.showAll();
 				break;
 			case 5:
+				// 상벌점메뉴 실행
+				console.giveScore();
+				break;
+			case 6:
+				// 징벌메뉴 실행
+				console.punish();
+				break;
+			case 7 :
 				// 프로그램 종료
 				System.exit(0);
 			}
