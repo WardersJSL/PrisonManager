@@ -8,20 +8,20 @@ public class Prisoner {
 	public enum Crime { THEFT, DECEIVE, MURDER, RAPE, VIOLENCE, DRUG, EMBEZZLE };
 
 	
-	private String name;		 //이름
-	//private String prisoner; 	// 죄수 
-	private Crime crime; 	    // 죄목
-	private Type type;		   // 죄수구분 
-	private String prinum; 	  //죄수 번호 
-	private int penalty;	 // 형량
-	private int score;		// 상벌점  
-	private int work; 		// 노동량 
-	boolean ill = false;	//질병 
-
+	private String name;		 	// 이름
+	//private String prisoner; 		// 죄수 
+	private Crime crime; 	   		// 죄목
+	private Type type;		   		// 죄수구분 
+	private String prinum; 	  		// 죄수 번호 
+	private int penalty;	 		// 형량
+	private int score;				// 상벌점  
+	private int work; 				// 노동량 
+	private boolean ill = false;	// 질병 
+	private int punish;				// 징계
 	
 	// 생성자 메서드 
 	public Prisoner(String name, String prinum, Crime crime, Type type, int penalty, int score,
-			int work, boolean ill) {
+			int work, boolean ill, int punish) {
 		super();
 		this.name = name;
 		this.prinum = prinum;
@@ -31,6 +31,7 @@ public class Prisoner {
 		this.score = score;
 		this.work = work;
 		this.ill = ill;
+		this.punish = punish;
 	}
 	
 	// 멤버 메서드
@@ -87,8 +88,14 @@ public class Prisoner {
 	}
 	public void setIll(boolean ill) {
 		this.ill = ill;
+	}	
+	public int getPunish() {
+		return punish;
 	}
-	
+	public void setPunish(int punish) {
+		this.punish = punish;
+	}
+
 	// Type -> String
 	public String typeToString(Type type) {
 		switch(type) {
