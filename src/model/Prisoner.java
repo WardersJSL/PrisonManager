@@ -97,7 +97,7 @@ public class Prisoner {
    }
 
    // Type -> String
-   public String typeToString(Type type) {
+   public String typeToString() {
       switch(type) {
       case DRUG:
          return "마약사범";
@@ -113,7 +113,7 @@ public class Prisoner {
    }
    
    // Crime -> String
-   public String crimeToString(Crime crime) {
+   public String crimeToString() {
       switch(crime) {
       case DECEIVE:
          return "사기";
@@ -135,3 +135,4 @@ public class Prisoner {
    }
    
 }
+
