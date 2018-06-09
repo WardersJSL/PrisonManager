@@ -1,5 +1,7 @@
 package model;
 
+// Todo: 생성자 오버로딩 필요. 문자열(한글명)을 받아 Type 또는 Crime형으로 멤버 변수에 저장
+
 //죄수 정보 클래스
 public class Prisoner {
    
