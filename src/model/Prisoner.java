@@ -34,6 +34,21 @@ public class Prisoner {
       this.punish = punish;
    }
    
+   // 생성자 오버로딩(죄목과 죄수구분을 문자열 형태로 받는다.)
+   public Prisoner(String name, String prinum, String strCrime, String strType, int penalty, int score,
+	         int work, boolean ill, int punish) {
+	      super();
+	      this.name = name;
+	      this.prinum = prinum;
+	      this.crime = stringToCrime(strCrime);
+	      this.type = stringToType(strType);
+	      this.penalty = penalty;
+	      this.score = score;
+	      this.work = work;
+	      this.ill = ill;
+	      this.punish = punish;
+	   }
+   
    // 멤버 메서드
    public String getName() {
       return name;
@@ -133,6 +148,45 @@ public class Prisoner {
          return null;
       }
    }
+   
+   // String -> Type
+   public static Type stringToType(String strType) {
+	   switch(strType) {
+	   case "마약사범":
+		   return Type.DRUG;
+	   case "일반":
+		   return Type.NORMAL;
+	   case "요시찰":
+		   return Type.WATCH;
+	   case "사형수":
+		   return Type.EXECUTE;
+	   default:
+		   return null;
+	   }
+   }
+   
+   // String -> Crime
+   public static Crime stringToCrime(String strCrime) {
+	   switch(strCrime) {
+	   case "절도":
+		   return Crime.THEFT;
+	   case "폭행":
+		   return Crime.VIOLENCE;
+	   case "살인":
+		   return Crime.MURDER;
+	   case "강간":
+		   return Crime.RAPE;
+	   case "횡령":
+		   return Crime.EMBEZZLE;
+	   case "사기":
+		   return Crime.DECEIVE;
+	   case "마약":
+		   return Crime.DRUG;
+	   default:
+		   return null;
+	   }
+   }
+   
    
 }
 
