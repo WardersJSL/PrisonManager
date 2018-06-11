@@ -18,7 +18,7 @@ public class PrisonController {
    }
    
    // 죄수번호 유효성 검사
-   public boolean isValidPrisonerNo(String prisonerNo) {
+   public static boolean isValidPrisonerNo(String prisonerNo) {
       boolean x = false;
       if(prisonerNo.charAt(0)=='0') {
          if(prisonerNo.charAt(1)=='1'||prisonerNo.charAt(1)=='2'){
@@ -38,7 +38,7 @@ public class PrisonController {
    }
    
    // 죄수 정보 유효성 검사
-   public boolean isValidPrisoner(Prisoner prisoner) {
+   public static boolean isValidPrisoner(Prisoner prisoner) {
       boolean x=true;
       if(!isValidPrisonerNo(prisoner.getPrinum())){
          x=false;
