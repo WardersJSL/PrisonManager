@@ -1,5 +1,6 @@
 package action;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import controller.PrisonController;
@@ -64,7 +65,7 @@ public class EnterAction implements Action {
 					else
 						break;
 				}
-				catch(Exception ex) {
+				catch(NumberFormatException ex) {
 					System.out.println();
 					System.out.println("잘못된 입력입니다. 숫자만 입력해 주세요.");
 				}
@@ -83,7 +84,7 @@ public class EnterAction implements Action {
 					else
 						break;
 				}
-				catch(Exception ex) {
+				catch(NumberFormatException ex) {
 					System.out.println();
 					System.out.println("잘못된 입력입니다. 숫자만 입력해 주세요.");
 				}
@@ -101,7 +102,7 @@ public class EnterAction implements Action {
 					else
 						break;
 				}
-				catch(Exception ex) {
+				catch(NumberFormatException ex) {
 					System.out.println();
 					System.out.println("잘못된 입력입니다. 숫자만 입력해 주세요.");
 				}
