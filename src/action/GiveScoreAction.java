@@ -13,6 +13,7 @@ public class GiveScoreAction implements Action {
 		int subMenu = 0;	// 상점인지 벌점인지를 결정하는 변수(1: 상점, 2: 벌점)
 		int maxGiving = 0;	// 부여 가능한 상점 또는 벌점의 상한
 		int scoreToAdd = 0;	// 부여할 상벌점
+		char c = '\0';		// yes or no
 		
 		try {
 			PrisonerDAO dao = new PrisonerDAO();
@@ -24,19 +25,59 @@ public class GiveScoreAction implements Action {
 			
 			if(prisoner != null) {
 				
-				while(true) {
-					try {
-						System.out.println("1. 상점\t2. 벌점");
-						System.out.print("번호를 입력하세요 = ");
-						subMenu = Integer.parseInt(sc.nextLine());
-						if(subMenu != 1 && subMenu != 2)
-							System.out.println("입력 범위를 벗어났습니다.");
-						else
+				// 상벌점의 상한 또는 하한일 경우 이를 알리고 상황에 맞게 처리
+				if(prisoner.getScore() == 80) {
+					System.out.println("현재 상점이 80으로, 벌점만 부여할 수 있습니다.");
+					while(true) {
+						System.out.print("벌점을 부여하시겠습니까(y/n) = ");
+						c = (char)System.in.read();
+						System.in.read();
+						if(c == 'Y' || c == 'y') {
+							subMenu = 2;
 							break;
-					} catch(NumberFormatException ex) {
-						System.out.println("숫자를 입력해 주세요.");						
+						}
+						else if(c == 'N' || c == 'n') {
+							System.out.println("상벌점 부여 작업을 종료합니다.\n");
+							return;
+						}
+						else {
+							System.out.println("잘못된 입력입니다. 다시 입력해 주십시오.");
+						}
 					}
 				}
+				else if(prisoner.getScore() == -40) {
+					System.out.println("현재 벌점이 80으로, 벌점만 부여할 수 있습니다.");
+					while(true) {
+						System.out.print("벌점을 부여하시겠습니까(y/n) = ");
+						c = (char)System.in.read();
+						System.in.read();
+						if(c == 'Y' || c == 'y') {
+							subMenu = 1;
+							break;
+						}
+						else if(c == 'N' || c == 'n') {
+							System.out.println("상벌점 부여 작업을 종료합니다.\n");
+							return;
+						}
+						else {
+							System.out.println("잘못된 입력입니다. 다시 입력해 주십시오.");
+						}
+					}
+				}else {
+					while(true) {
+						try {
+							System.out.println("1. 상점\t2. 벌점");
+							System.out.print("번호를 입력하세요 = ");
+							subMenu = Integer.parseInt(sc.nextLine());
+							if(subMenu != 1 && subMenu != 2)
+								System.out.println("입력 범위를 벗어났습니다.");
+							else
+								break;
+						} catch(NumberFormatException ex) {
+							System.out.println("숫자를 입력해 주세요.");						
+						}
+					}
+				}				
 				
 				// 상점 부여 모드일 때의 입력 상한은 80 - (현재 상벌점)
 				// 벌점 부여 모드일 때의 입력 상한은 (현재 상벌점) + 40
