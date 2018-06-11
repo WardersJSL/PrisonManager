@@ -237,4 +237,25 @@ public class PrisonerDAO {
 		
 		return result > 0;
 	}
+	
+	/**
+	 * 징계 처리 내부동작(DB)
+	 * @param prisonerNo 죄수번호
+	 * @return 성공여부
+	 */
+	public boolean initScore(String prisonerNo) {
+		// 벌점이 -40점인 죄수만 징계 가능
+		// 징계를 받은 죄수의 벌점은 0으로 초기화
+		Prisoner prisoner = selectPrisonerByPrinum(prisonerNo);
+		
+		if(prisoner == null)
+			return false;
+		
+		if(prisoner.getScore() > -40)
+			return false;
+		
+		prisoner.setScore(0);
+		
+		return updatePrisoner(prisoner);
+	}
 }
