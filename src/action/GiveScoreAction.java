@@ -62,7 +62,15 @@ public class GiveScoreAction implements Action {
 				// 상벌점 부여 처리
 				if(dao.updatePrisoner(prisoner)) {
 					System.out.println();
-					System.out.println(prisonerNo + "에게 " + (subMenu == 1 ? "상점 " : "벌점 ") + scoreToAdd + "점을 부여하였습니다.\n");
+					System.out.println(prisoner.getName() + "(" + prisonerNo + ")에게 " + (subMenu == 1 ? "상점 " : "벌점 ") + scoreToAdd + "점을 부여하였습니다.");
+					
+					// 가석방 대상 또는 징계 대상이 되었을 경우 이를 알림
+					if(prisoner.getScore() == 80)
+						System.out.println("가석방 심사 대상이 되었습니다.");
+					else if(prisoner.getScore() == -40)
+						System.out.println("징계 대상이 되었습니다.");
+					
+					System.out.println();
 				}
 			} else {
 				System.out.println();

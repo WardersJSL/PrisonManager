@@ -19,7 +19,7 @@ public class ConsoleViewer {
 	}
 	
 	// Todo: 추가된 메뉴 반영해 주세요
-	public void showMenu() { // 기본 메뉴
+	public static void showMenu() { // 기본 메뉴
 		System.out.println();
 		System.out.println("=======================");
 		System.out.println("  교도소 관리 프로그램");
@@ -281,7 +281,7 @@ public class ConsoleViewer {
 		}
 	
 	
-	public int menuCheck() { // 사용자가 메뉴에서 입력한 값 체크
+	public static int menuCheck(Scanner sc) { // 사용자가 메뉴에서 입력한 값 체크
 		int menu = 0;
 		do {
 			try {
