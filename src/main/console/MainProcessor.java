@@ -7,6 +7,7 @@ import action.EnterAction;
 import action.GiveScoreAction;
 import action.PunishAction;
 import action.ReleaseAction;
+import action.SearchAction;
 import action.ShowAllAction;
 import view.ConsoleViewer;
 
@@ -35,8 +36,8 @@ public class MainProcessor {
 				break;
 			case 3:
 				// 검색메뉴 실행
-				//console.search();
-				// (Action 구현중)
+				action = new SearchAction();
+				action.execute(sc);
 				break;
 			case 4:
 				// 전체조회 실행

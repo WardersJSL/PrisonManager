@@ -32,6 +32,7 @@ public class GiveScoreAction implements Action {
 						System.out.print("벌점을 부여하시겠습니까(y/n) = ");
 						c = (char)System.in.read();
 						System.in.read();
+						System.in.read();
 						if(c == 'Y' || c == 'y') {
 							subMenu = 2;
 							break;
@@ -46,10 +47,11 @@ public class GiveScoreAction implements Action {
 					}
 				}
 				else if(prisoner.getScore() == -40) {
-					System.out.println("현재 벌점이 80으로, 벌점만 부여할 수 있습니다.");
+					System.out.println("현재 벌점이 40으로, 상점만 부여할 수 있습니다.");
 					while(true) {
-						System.out.print("벌점을 부여하시겠습니까(y/n) = ");
+						System.out.print("상점을 부여하시겠습니까(y/n) = ");
 						c = (char)System.in.read();
+						System.in.read();
 						System.in.read();
 						if(c == 'Y' || c == 'y') {
 							subMenu = 1;

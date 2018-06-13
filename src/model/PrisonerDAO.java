@@ -22,7 +22,6 @@ public class PrisonerDAO {
 	 * @return
 	 */
 	public boolean insertPrisoner(Prisoner prisoner) {
-		// Todo: 테이블 형태는 임의로 코딩한 것으로, 변경될 수 있음
 		String sql = "insert into prisoner values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		PreparedStatement pstmt = null;
@@ -69,7 +68,7 @@ public class PrisonerDAO {
 			conn = db.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, prisonerNo);
-			result = pstmt.executeUpdate(sql);
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -86,7 +85,6 @@ public class PrisonerDAO {
 	 * @return
 	 */
 	public ArrayList<Prisoner> selectPrisonerByName(String name) {
-		// Todo: 테이블 형태는 임의로 코딩한 것으로, 변경될 수 있음
 		String sql = "select * from prisoner where name = ?";
 		ArrayList<Prisoner> foundPrisoners = new ArrayList<Prisoner>();
 		
@@ -124,7 +122,6 @@ public class PrisonerDAO {
 	}
 	
 	public Prisoner selectPrisonerByPrinum(String prinum) {
-		// Todo: 테이블 형태는 임의로 코딩한 것으로, 변경될 수 있음
 				String sql = "select * from prisoner where prinum = ?";
 				Prisoner foundPrisoner = null;
 				
@@ -166,7 +163,6 @@ public class PrisonerDAO {
 	 * @return
 	 */
 	public ArrayList<Prisoner> selectAllPrisoners() {
-		// Todo: 테이블 형식은 임의로 코딩한 것으로, 변경될 수 있음
 		String sql = "select * from prisoner order by prinum asc";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -175,7 +171,7 @@ public class PrisonerDAO {
 		
 		try {
 			conn = db.getConnection();
-			pstmt.getConnection().prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
 			while(rs != null && rs.next()) {
@@ -207,7 +203,6 @@ public class PrisonerDAO {
 	 * @return
 	 */
 	public boolean updatePrisoner(Prisoner modifiedPrisoner) {
-		// Todo: 테이블 형식은 임의로 코딩한 것으로, 변경될 수 있음
 		String sql = "update prisoner set name = ?, crime = ?, type = ?, " + 
 				"penalty = ?, score = ?, work = ?, " + 
 				"ill = ?, punish = ? where prinum = ?";
@@ -227,7 +222,7 @@ public class PrisonerDAO {
 			pstmt.setInt(7, modifiedPrisoner.isIll() == true ? 1 : 0);
 			pstmt.setInt(8, modifiedPrisoner.getPunish());
 			pstmt.setString(9, modifiedPrisoner.getPrinum());
-			result = pstmt.executeUpdate(sql);
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

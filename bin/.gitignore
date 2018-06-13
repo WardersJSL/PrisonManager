@@ -1,6 +1,4 @@
-/action/
-/controller/
-/db/
-/main/
 /model/
-/view/
+/action/
+/main/
+/controller/

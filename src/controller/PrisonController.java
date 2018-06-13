@@ -67,7 +67,7 @@ public class PrisonController {
       case EXECUTE :break;
       default : x = false;
       }
-      if(prisoner.getPenalty()>=1&&prisoner.getPenalty()<=9999){
+      if(prisoner.getPenalty()>=0&&prisoner.getPenalty()<=9999){
       
       }else {
          x=false;
