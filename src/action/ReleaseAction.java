@@ -22,6 +22,11 @@ public class ReleaseAction implements Action {
 				System.out.print("죄수번호 = ");
 				prisonerNo = sc.nextLine();
 				
+				if(prisonerNo.equals("/cancel")) {
+					System.out.println("작업을 종료합니다.\n");
+					return;
+				}
+				
 				if(!PrisonController.isValidPrisonerNo(prisonerNo)) {
 					System.out.println();
 					System.out.println("유효하지 않은 죄수번호입니다. 다시 입력해 주세요.");
