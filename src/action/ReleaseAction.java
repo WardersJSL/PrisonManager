@@ -23,7 +23,7 @@ public class ReleaseAction implements Action {
 				prisonerNo = sc.nextLine();
 				
 				if(prisonerNo.equals("/cancel")) {
-					System.out.println("작업을 종료합니다.\n");
+					System.out.println("작업을 취소합니다.\n");
 					return;
 				}
 				

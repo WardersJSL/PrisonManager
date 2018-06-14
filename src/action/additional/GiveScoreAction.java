@@ -29,7 +29,7 @@ public class GiveScoreAction implements Action {
 			prisonerNo = sc.nextLine();
 			
 			if(prisonerNo.equals("/cancel")) {
-				System.out.println("작업을 종료합니다.\n");
+				System.out.println("작업을 취소합니다.\n");
 				return;
 			}
 			
@@ -45,7 +45,7 @@ public class GiveScoreAction implements Action {
 						yesNo = sc.nextLine();
 						
 						if(yesNo.equals("/cancel")) {
-							System.out.println("작업을 종료합니다.");
+							System.out.println("작업을 취소합니다.");
 							return;
 						}
 						
@@ -71,7 +71,7 @@ public class GiveScoreAction implements Action {
 						yesNo = sc.nextLine();
 						
 						if(yesNo.equals("/cancel")) {
-							System.out.println("작업을 종료합니다.");
+							System.out.println("작업을 취소합니다.");
 							return;
 						}
 						
@@ -97,7 +97,7 @@ public class GiveScoreAction implements Action {
 							
 							String strSubMenu = sc.nextLine();
 							if(strSubMenu.equals("/cancel")) {
-								System.out.println("작업을 종료합니다.");
+								System.out.println("작업을 취소합니다.");
 								return;
 							}
 							
@@ -122,7 +122,7 @@ public class GiveScoreAction implements Action {
 						
 						String strScoreToAdd = sc.nextLine();
 						if(strScoreToAdd.equals("/cancel")) {
-							System.out.println("작업을 종료합니다.");
+							System.out.println("작업을 취소합니다.");
 							return;
 						}
 						
