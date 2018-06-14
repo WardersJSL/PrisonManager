@@ -8,6 +8,9 @@ import action.EnterAction;
 import action.ReleaseAction;
 import action.ShowAllAction;
 import action.additional.GiveScoreAction;
+import action.additional.IllAction;
+import action.additional.LaborAction;
+import action.additional.ParoleAction;
 import action.additional.PunishAction;
 import action.search.SearchByCrimeAction;
 import action.search.SearchByNameAction;
@@ -165,13 +168,16 @@ public class ConsoleViewer {
 				action.execute(sc);
 				break;
 			case ADDITIONAL_MENU_PAROLE:
-				System.out.println("가석방 기능은 개발중입니다.\n");
+				action = new ParoleAction();
+				action.execute(sc);
 				break;
 			case ADDITIONAL_MENU_LABOR:
-				System.out.println("노동량 갱신 기능은 개발중입니다.\n");
+				action = new LaborAction();
+				action.execute(sc);
 				break;
 			case ADDITIONAL_MENU_ILL:
-				System.out.println("질병유무 갱신 기능은 개발중입니다.\n");
+				action = new IllAction();
+				action.execute(sc);
 				break;
 			case ADDITIONAL_MENU_BACK:
 				System.out.println();
