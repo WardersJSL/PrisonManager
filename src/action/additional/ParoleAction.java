@@ -51,11 +51,11 @@ public class ParoleAction implements Action {
 				// 모든 조건을 충족하면, 삭제 작업을 수행하고 성공 여부 출력
 				if(dao.deletePrisoner(prisonerNo)) {
 					System.out.println();
-					System.out.println("죄수번호 " + prisonerNo + "의 출소가 완료되었습니다.");
+					System.out.println("죄수번호 " + prisonerNo + "의 가석방이 완료되었습니다.");
 				}
 				else {
 					System.out.println();
-					System.out.println("출소 처리에 실패하였습니다.");
+					System.out.println("가석방 처리에 실패하였습니다.");
 				}
 			}
 			else {
