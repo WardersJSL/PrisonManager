@@ -19,7 +19,7 @@ public class GiveScoreAction implements Action {
 		int subMenu = 0;	// 상점인지 벌점인지를 결정하는 변수(1: 상점, 2: 벌점)
 		int maxGiving = 0;	// 부여 가능한 상점 또는 벌점의 상한
 		int scoreToAdd = 0;	// 부여할 상벌점
-		char c = '\0';		// yes or no
+		String yesNo;		// yes or no
 		
 		try {
 			PrisonerDAO dao = new PrisonerDAO();
@@ -27,6 +27,12 @@ public class GiveScoreAction implements Action {
 			String prisonerNo;
 			System.out.print("\n죄수번호 = ");
 			prisonerNo = sc.nextLine();
+			
+			if(prisonerNo.equals("/cancel")) {
+				System.out.println("작업을 종료합니다.\n");
+				return;
+			}
+			
 			prisoner = dao.selectPrisonerByPrinum(prisonerNo);
 			
 			if(prisoner != null) {
@@ -36,14 +42,20 @@ public class GiveScoreAction implements Action {
 					System.out.println("현재 상점이 80으로, 벌점만 부여할 수 있습니다.");
 					while(true) {
 						System.out.print("벌점을 부여하시겠습니까(y/n) = ");
-						c = (char)System.in.read();
+						yesNo = sc.nextLine();
+						
+						if(yesNo.equals("/cancel")) {
+							System.out.println("작업을 종료합니다.");
+							return;
+						}
+						
 						System.in.read();
 						System.in.read();
-						if(c == 'Y' || c == 'y') {
+						if(yesNo.equalsIgnoreCase("y")) {
 							subMenu = 2;
 							break;
 						}
-						else if(c == 'N' || c == 'n') {
+						else if(yesNo.equalsIgnoreCase("n")) {
 							System.out.println("상벌점 부여 작업을 종료합니다.\n");
 							return;
 						}
@@ -56,14 +68,20 @@ public class GiveScoreAction implements Action {
 					System.out.println("현재 벌점이 40으로, 상점만 부여할 수 있습니다.");
 					while(true) {
 						System.out.print("상점을 부여하시겠습니까(y/n) = ");
-						c = (char)System.in.read();
+						yesNo = sc.nextLine();
+						
+						if(yesNo.equals("/cancel")) {
+							System.out.println("작업을 종료합니다.");
+							return;
+						}
+						
 						System.in.read();
 						System.in.read();
-						if(c == 'Y' || c == 'y') {
+						if(yesNo.equalsIgnoreCase("y")) {
 							subMenu = 1;
 							break;
 						}
-						else if(c == 'N' || c == 'n') {
+						else if(yesNo.equalsIgnoreCase("n")) {
 							System.out.println("상벌점 부여 작업을 종료합니다.\n");
 							return;
 						}
@@ -76,7 +94,14 @@ public class GiveScoreAction implements Action {
 						try {
 							System.out.println("1. 상점\t2. 벌점");
 							System.out.print("번호를 입력하세요 = ");
-							subMenu = Integer.parseInt(sc.nextLine());
+							
+							String strSubMenu = sc.nextLine();
+							if(strSubMenu.equals("/cancel")) {
+								System.out.println("작업을 종료합니다.");
+								return;
+							}
+							
+							subMenu = Integer.parseInt(strSubMenu);
 							if(subMenu != 1 && subMenu != 2)
 								System.out.println("입력 범위를 벗어났습니다.");
 							else
@@ -94,7 +119,14 @@ public class GiveScoreAction implements Action {
 				while(true) {
 					try {
 						System.out.print(subMenu == 1 ? "상점 부여(1~" + maxGiving + ") = " : "벌점 부여(1~" + maxGiving + ") = ");
-						scoreToAdd = Integer.parseInt(sc.nextLine());
+						
+						String strScoreToAdd = sc.nextLine();
+						if(strScoreToAdd.equals("/cancel")) {
+							System.out.println("작업을 종료합니다.");
+							return;
+						}
+						
+						scoreToAdd = Integer.parseInt(strScoreToAdd);
 						if(scoreToAdd < 1 || scoreToAdd > maxGiving) {
 							System.out.println("범위를 벗어났습니다.");
 						}
