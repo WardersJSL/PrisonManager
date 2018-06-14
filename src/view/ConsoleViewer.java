@@ -3,6 +3,13 @@ package view;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import action.Action;
+import action.EnterAction;
+import action.GiveScoreAction;
+import action.PunishAction;
+import action.ReleaseAction;
+import action.SearchAction;
+import action.ShowAllAction;
 import controller.PrisonController;
 import model.Prisoner;
 import model.Prisoner.Crime;
@@ -20,8 +27,32 @@ public class ConsoleViewer {
 	public static final int MAX_ADDITIONAL_MENU = 6;	// 부가기능 메뉴 항목 갯수
 	public static final int MAX_SEARCH_MENU = 5;		// 검색메뉴 항목 갯수
 	
+	// 메인 메뉴 항목 번호
+	public static final int MAIN_MENU_ENTER = 1;		// 입소
+	public static final int MAIN_MENU_RELEASE = 2;		// 출소
+	public static final int MAIN_MENU_SEARCH = 3;		// 검색
+	public static final int MAIN_MENU_SHOWALL = 4;		// 전체조회
+	public static final int MAIN_MENU_ADDITIONAL = 5;	// 부가기능
+	public static final int MAIN_MENU_EXIT = 6;			// 종료
+	
+	// 부가기능 메뉴 항목 번호
+	public static final int ADDITIONAL_MENU_SCORE = 1;	// 상벌점 부여
+	public static final int ADDITIONAL_MENU_PUNISH = 2;	// 징계
+	public static final int ADDITIONAL_MENU_PAROLE = 3;	// 가석방
+	public static final int ADDITIONAL_MENU_LABOR = 4;	// 노동량 갱신
+	public static final int ADDITIONAL_MENU_ILL = 5;	// 질병유무 갱신
+	public static final int ADDITIONAL_MENU_BACK = 6;	// 메인메뉴로 복귀
+	
+	// 검색기능 메뉴 항목 번호
+	public static final int SEARCH_MENU_NAME = 1;		// 이름으로 검색
+	public static final int SEARCH_MENU_PRINUM = 2;		// 죄수번호로 검색
+	public static final int SEARCH_MENU_TYPE = 3;		// 죄수구분으로 검색
+	public static final int SEARCH_MENU_CRIME = 4;		// 죄목으로 검색
+	public static final int SEARCH_MENU_BACK = 5;		// 메인메뉴로 복귀
+	
 	private PrisonController prisonMgr;	// 교도소 관리자
-	Scanner sc = new Scanner(System.in);
+	private Scanner sc = new Scanner(System.in);
+	private Action action = null;
 	
 	public ConsoleViewer() {
 		prisonMgr = new PrisonController();
@@ -36,9 +67,8 @@ public class ConsoleViewer {
 		System.out.println("  2. 출소");
 		System.out.println("  3. 검색");
 		System.out.println("  4. 전체조회");
-		System.out.println("  5. 상벌점");
-		System.out.println("  6. 징벌");
-		System.out.println("  7. 종료");
+		System.out.println("  5. 부가기능");
+		System.out.println("  6. 종료");
 		System.out.println("=======================");
 	}
 	
@@ -46,7 +76,7 @@ public class ConsoleViewer {
 	 * 부가기능 메뉴 출력
 	 */
 	public static void showAdditionalMenu() {
-		System.out.println("=======================");
+		System.out.println("\n=======================");
 		System.out.println(" 교도소 관리자 - 부가기능");
 		System.out.println("-----------------------");
 		System.out.println("  1. 상벌점 부여");
@@ -62,7 +92,7 @@ public class ConsoleViewer {
 	 * 검색 메뉴 출력
 	 */
 	public static void showSearchMenu() {
-		System.out.println("=======================");
+		System.out.println("\n=======================");
 		System.out.println(" 교도소 관리자 - 검색메뉴");
 		System.out.println("-----------------------");
 		System.out.println("  1. 이름으로 검색");
@@ -72,6 +102,109 @@ public class ConsoleViewer {
 //		System.out.println("  5. 수감시설별 검색");
 		System.out.println("  5. 메인메뉴로 돌아가기");	// Todo: 5번 메뉴를 사용하려면 이 번호를 수정할 것
 		System.out.println("=======================");
+	}
+	
+	/**
+	 * 메인메뉴 실행
+	 */
+	public void runMainMenu() {
+		while(true) {
+			// 메뉴 출력
+			showMenu();
+			
+			// 사용자에게 메뉴 번호를 받아 변수 menu에 저장
+			switch(menuCheck(sc, MENU_ID_MAIN)) {
+			case MAIN_MENU_ENTER:
+				// 입소메뉴 실행
+				action = new EnterAction();
+				action.execute(sc);
+				break;
+			case MAIN_MENU_RELEASE:
+				// 출소메뉴 실행
+				action = new ReleaseAction();
+				action.execute(sc);
+				break;
+			case MAIN_MENU_SEARCH:
+				// 검색메뉴 실행
+				runSearchMenu();
+				break;
+			case MAIN_MENU_SHOWALL:
+				// 전체조회 실행
+				action = new ShowAllAction();
+				action.execute(sc);
+				break;
+			case MAIN_MENU_ADDITIONAL:
+				runAdditionalMenu();
+				break;
+			case MAIN_MENU_EXIT:
+				// 프로그램 종료
+				System.exit(0);
+			}
+		}
+	}
+	
+	/**
+	 * 부가기능 메뉴 실행
+	 */
+	public void runAdditionalMenu() {
+		while(true) {
+			// 메뉴 출력
+			showAdditionalMenu();
+			
+			// 사용자에게 메뉴 번호를 받아 변수 menu에 저장
+			switch(menuCheck(sc, MENU_ID_ADDITIONAL)) {
+			case ADDITIONAL_MENU_SCORE:
+				action = new GiveScoreAction();
+				action.execute(sc);
+				break;
+			case ADDITIONAL_MENU_PUNISH:
+				action = new PunishAction();
+				action.execute(sc);
+				break;
+			case ADDITIONAL_MENU_PAROLE:
+				System.out.println("가석방 기능은 개발중입니다.\n");
+				break;
+			case ADDITIONAL_MENU_LABOR:
+				System.out.println("노동량 갱신 기능은 개발중입니다.\n");
+				break;
+			case ADDITIONAL_MENU_ILL:
+				System.out.println("질병유무 갱신 기능은 개발중입니다.\n");
+				break;
+			case ADDITIONAL_MENU_BACK:
+				System.out.println();
+				return;
+			}
+		}
+	}
+	
+	/**
+	 * 검색메뉴 실행
+	 */
+	public void runSearchMenu() {
+		while(true) {
+			// 메뉴 출력
+			showSearchMenu();
+			
+			// 사용자에게 메뉴 번호를 받아 변수 menu에 저장
+			switch(menuCheck(sc, MENU_ID_SEARCH)) {
+			case SEARCH_MENU_NAME:
+				action = new SearchAction();
+				action.execute(sc);
+				break;
+			case SEARCH_MENU_PRINUM:
+				System.out.println("죄수번호로 검색하는 기능은 개발중입니다.\n");
+				break;
+			case SEARCH_MENU_TYPE:
+				System.out.println("죄수구분으로 검색하는 기능은 개발중입니다.\n");
+				break;
+			case SEARCH_MENU_CRIME:
+				System.out.println("죄목으로 검색하는 기능은 개발중입니다.\n");
+				break;
+			case SEARCH_MENU_BACK:
+				System.out.println();
+				return;
+			}
+		}
 	}
 	
 	public void enter() { // 입소메뉴
