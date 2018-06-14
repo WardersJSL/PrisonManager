@@ -27,9 +27,9 @@ public class SearchByNameAction implements Action {
 				System.out.print("이름 = ");
 				name = sc.nextLine();
 
-				if(dao.selectPrisonerByName(name) != null){
+				if(dao.selectPrisoners(name, PrisonerDAO.FIELD_NAME) != null){
 					ArrayList<Prisoner> foundPrisoners = new ArrayList<Prisoner>();
-					foundPrisoners.addAll(dao.selectPrisonerByName(name));
+					foundPrisoners.addAll(dao.selectPrisoners(name, PrisonerDAO.FIELD_NAME));
 					for(int i = 0; i < foundPrisoners.size(); i++) {
 						System.out.println();
 						System.out.println("-------------------");
