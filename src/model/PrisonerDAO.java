@@ -9,6 +9,17 @@ import java.util.ArrayList;
 import db.JdbcUtils;
 
 public class PrisonerDAO {
+	// 죄수 테이블의 필드 식별번호
+	public static final int FIELD_PRINUM = 1;	// 죄수번호
+	public static final int FIELD_NAME = 2;		// 이름
+	public static final int FIELD_CRIME = 3;	// 죄목
+	public static final int FIELD_TYPE = 4;		// 죄수구분
+	public static final int FIELD_PENALTY = 5;	// 형량
+	public static final int FIELD_SCORE = 6;	// 상벌점
+	public static final int FIELD_WORK = 7;		// 노동량
+	public static final int FIELD_ILL = 8;		// 질병유무
+	public static final int FIELD_PUNISH = 9;	// 징계횟수
+	
 	Connection conn = null;
 	JdbcUtils db;
 	
@@ -80,22 +91,37 @@ public class PrisonerDAO {
 	}
 	
 	/**
-	 * 이름으로 죄수(들) 찾기
-	 * @param name
+	 * 죄수검색<br>
+	 * 죄수번호 이외의 문자열 값으로 검색하는 기능을 위한 메서드
+	 * @param value 검색값
+	 * @param field 필드 식별번호
 	 * @return
 	 */
-	public ArrayList<Prisoner> selectPrisonerByName(String name) {
-		String sql = "select * from prisoner where name = ?";
+	public ArrayList<Prisoner> selectPrisoners(String value, int field) {
+		String sql = "";
+		switch(field) {
+		case FIELD_NAME:
+			sql = "select * from prisoner where name = ?";
+			break;
+		case FIELD_CRIME:
+			sql = "select * from prisoner where crime = ?";
+			break;
+		case FIELD_TYPE:
+			sql = "select * from prisoner where type = ?";
+			break;
+		default:
+			System.err.println("오류: 잘못된 매개변수입니다.\nPrisonerDAO.selectPrisoners()");
+			return null;
+		}
 		ArrayList<Prisoner> foundPrisoners = new ArrayList<Prisoner>();
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		
 		try {
 			conn = db.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, name);
+			pstmt.setString(1, value);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
