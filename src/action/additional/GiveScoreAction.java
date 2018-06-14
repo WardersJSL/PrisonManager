@@ -1,10 +1,16 @@
-package action;
+package action.additional;
 
 import java.util.Scanner;
 
+import action.Action;
 import model.Prisoner;
 import model.PrisonerDAO;
 
+/**
+ * 상벌점 부여 Action
+ * @author JSLHRD
+ *
+ */
 public class GiveScoreAction implements Action {
 
 	@Override

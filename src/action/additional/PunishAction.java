@@ -1,15 +1,20 @@
-package action;
+package action.additional;
 
 import java.util.Scanner;
 
-import controller.PrisonController;
+import action.Action;
 import model.PrisonerDAO;
 
+/**
+ * 징계 Action
+ * @author JSLHRD
+ *
+ */
 public class PunishAction implements Action {
 
 	@Override
 	public void execute(Scanner sc) {
-		String prisonerNo;
+String prisonerNo;
 	
 		
 		try {
@@ -42,8 +47,6 @@ public class PunishAction implements Action {
 		}catch(Exception ex) {
 					ex.printStackTrace();
 				}
-		
-		
 	}
-}
 
+}

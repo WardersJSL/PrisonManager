@@ -1,12 +1,18 @@
-package action;
+package action.search;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import action.Action;
 import model.Prisoner;
 import model.PrisonerDAO;
 
-public class SearchAction implements Action {
+/**
+ * 이름으로 검색 Action
+ * @author JSLHRD
+ *
+ */
+public class SearchByNameAction implements Action {
 
 	@Override
 	public void execute(Scanner sc) {
