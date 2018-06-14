@@ -5,11 +5,14 @@ import java.util.Scanner;
 
 import action.Action;
 import action.EnterAction;
-import action.GiveScoreAction;
-import action.PunishAction;
 import action.ReleaseAction;
-import action.SearchAction;
 import action.ShowAllAction;
+import action.additional.GiveScoreAction;
+import action.additional.PunishAction;
+import action.search.SearchByCrimeAction;
+import action.search.SearchByNameAction;
+import action.search.SearchByPrinumAction;
+import action.search.SearchByTypeAction;
 import controller.PrisonController;
 import model.Prisoner;
 import model.Prisoner.Crime;
@@ -188,17 +191,20 @@ public class ConsoleViewer {
 			// 사용자에게 메뉴 번호를 받아 변수 menu에 저장
 			switch(menuCheck(sc, MENU_ID_SEARCH)) {
 			case SEARCH_MENU_NAME:
-				action = new SearchAction();
+				action = new SearchByNameAction();
 				action.execute(sc);
 				break;
 			case SEARCH_MENU_PRINUM:
-				System.out.println("죄수번호로 검색하는 기능은 개발중입니다.\n");
+				action = new SearchByPrinumAction();
+				action.execute(sc);
 				break;
 			case SEARCH_MENU_TYPE:
-				System.out.println("죄수구분으로 검색하는 기능은 개발중입니다.\n");
+				action = new SearchByTypeAction();
+				action.execute(sc);
 				break;
 			case SEARCH_MENU_CRIME:
-				System.out.println("죄목으로 검색하는 기능은 개발중입니다.\n");
+				action = new SearchByCrimeAction();
+				action.execute(sc);
 				break;
 			case SEARCH_MENU_BACK:
 				System.out.println();
