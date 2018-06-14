@@ -23,7 +23,7 @@ public class MainProcessor {
 			ConsoleViewer.showMenu();
 			
 			// 사용자에게 메뉴 번호를 받아 변수 menu에 저장
-			switch(ConsoleViewer.menuCheck(sc)) {
+			switch(ConsoleViewer.menuCheck(sc, ConsoleViewer.MENU_ID_MAIN)) {
 			case 1:
 				// 입소메뉴 실행
 				action = new EnterAction();

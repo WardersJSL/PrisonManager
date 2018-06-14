@@ -10,7 +10,16 @@ import model.Prisoner.Type;
 
 //콘솔 UI 클래스
 public class ConsoleViewer {
-	// 설계를 완료하고 나서 구현을 시작하겠습니다.
+	// 메뉴 식별번호 상수
+	public static final int MENU_ID_MAIN = 1;			// 메인메뉴
+	public static final int MENU_ID_ADDITIONAL = 2;		// 부가기능 메뉴
+	public static final int MENU_ID_SEARCH = 3;			// 검색메뉴
+	
+	// 메뉴별 항목 갯수에 대한 상수
+	public static final int MAX_MAIN_MENU = 7;			// 메인메뉴 항목 갯수
+	public static final int MAX_ADDITIONAL_MENU = 6;	// 부가기능 메뉴 항목 갯수
+	public static final int MAX_SEARCH_MENU = 5;		// 검색메뉴 항목 갯수
+	
 	private PrisonController prisonMgr;	// 교도소 관리자
 	Scanner sc = new Scanner(System.in);
 	
@@ -18,7 +27,6 @@ public class ConsoleViewer {
 		prisonMgr = new PrisonController();
 	}
 	
-	// Todo: 추가된 메뉴 반영해 주세요
 	public static void showMenu() { // 기본 메뉴
 		System.out.println();
 		System.out.println("=======================");
@@ -31,6 +39,38 @@ public class ConsoleViewer {
 		System.out.println("  5. 상벌점");
 		System.out.println("  6. 징벌");
 		System.out.println("  7. 종료");
+		System.out.println("=======================");
+	}
+	
+	/**
+	 * 부가기능 메뉴 출력
+	 */
+	public static void showAdditionalMenu() {
+		System.out.println("=======================");
+		System.out.println(" 교도소 관리자 - 부가기능");
+		System.out.println("-----------------------");
+		System.out.println("  1. 상벌점 부여");
+		System.out.println("  2. 징벌");
+		System.out.println("  3. 가석방");
+		System.out.println("  4. 노동량 갱신");
+		System.out.println("  5. 질병유무 갱신");
+		System.out.println("  6. 메인메뉴로 돌아가기");
+		System.out.println("=======================");
+	}
+	
+	/**
+	 * 검색 메뉴 출력
+	 */
+	public static void showSearchMenu() {
+		System.out.println("=======================");
+		System.out.println(" 교도소 관리자 - 검색메뉴");
+		System.out.println("-----------------------");
+		System.out.println("  1. 이름으로 검색");
+		System.out.println("  2. 죄수번호로 검색");
+		System.out.println("  3. 죄수구분으로 검색");
+		System.out.println("  4. 죄목으로 검색");
+//		System.out.println("  5. 수감시설별 검색");
+		System.out.println("  5. 메인메뉴로 돌아가기");	// Todo: 5번 메뉴를 사용하려면 이 번호를 수정할 것
 		System.out.println("=======================");
 	}
 	
@@ -280,9 +320,32 @@ public class ConsoleViewer {
 			System.out.println();
 		}
 	
-	
-	public static int menuCheck(Scanner sc) { // 사용자가 메뉴에서 입력한 값 체크
+	/**
+	 * 사용자로부터 메뉴 번호를 입력받고 그 번호를 반환
+	 * @param sc 스캐너 객체
+	 * @param menuId 메뉴의 종류에 대한 식별번호
+	 * @return 사용자에게 입력받은 메뉴번호
+	 */
+	public static int menuCheck(Scanner sc, int menuId) { // 사용자가 메뉴에서 입력한 값 체크
 		int menu = 0;
+		int menuNum = 0;
+		
+		// 메뉴 식별번호에 따른 메뉴 항목 갯수 설정
+		switch(menuId) {
+		case MENU_ID_MAIN:
+			menuNum = MAX_MAIN_MENU;
+			break;
+		case MENU_ID_ADDITIONAL:
+			menuNum = MAX_ADDITIONAL_MENU;
+			break;
+		case MENU_ID_SEARCH:
+			menuNum = MAX_SEARCH_MENU;
+			break;
+		default:
+			System.out.println("잘못된 매개변수입니다.");
+			return 0;
+		}
+		
 		do {
 			try {
 			System.out.print("메뉴 = ");
@@ -292,7 +355,7 @@ public class ConsoleViewer {
 				System.out.println("잘못된 입력입니다.");
 			}
 			
-			if(menu >= 1 && menu <= 7) {
+			if(menu >= 1 && menu <= menuNum) {
 				return menu;
 			} else {
 				System.out.println();
