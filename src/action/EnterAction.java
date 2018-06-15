@@ -31,7 +31,11 @@ public class EnterAction implements Action {
 			while(true) {
 				System.out.print("죄수번호 = ");
 				prisonerNo = sc.nextLine();
-				if(!PrisonController.isValidPrisonerNo(prisonerNo)) {
+				if(prisonerNo.equals("/cancel")) {
+					System.out.println("작업을 취소합니다.\n");
+					return;
+				}
+				else if(!PrisonController.isValidPrisonerNo(prisonerNo)) {
 					System.out.println("잘못된 죄수번호입니다. 다시 입력해 주세요.");
 				}
 				else if(dao.selectPrisonerByPrinum(prisonerNo) != null) {
@@ -45,7 +49,11 @@ public class EnterAction implements Action {
 			while(true) {
 				System.out.print("이름(2~20자) = ");
 				name = sc.nextLine();
-				if(name.length() < 2 || name.length() > 20) {
+				if(name.equals("/cancel")) {
+					System.out.println("작업을 취소합니다.\n");
+					return;
+				}
+				else if(name.length() < 2 || name.length() > 20) {
 					System.out.println();
 					System.out.println("이름의 길이가 범위를 벗어났습니다. 다시 입력해 주세요.");
 				}
@@ -57,7 +65,14 @@ public class EnterAction implements Action {
 			while(true) {
 				System.out.print("형량(0~9999개월) = ");
 				try {
-					panaltyMonths = Integer.parseInt(sc.nextLine());
+					String strPanaltyMonths = sc.nextLine();
+					
+					if(strPanaltyMonths.equals("/cancel")) {
+						System.out.println("작업을 취소합니다.\n");
+						return;
+					}
+					
+					panaltyMonths = Integer.parseInt(strPanaltyMonths);
 					if(panaltyMonths < 0 || panaltyMonths > 9999) {
 						System.out.println();
 						System.out.println("형량이 범위를 벗어났습니다. 다시 입력해 주세요.");
@@ -76,7 +91,13 @@ public class EnterAction implements Action {
 			while(true) {
 				System.out.print("죄목(1.절도  2.사기  3.살인  4.강간  5.폭행  6.마약  7.공금횡령) = ");
 				try {
-					inputCrime = Integer.parseInt(sc.nextLine());
+					String strInputCrime = sc.nextLine();
+					if(strInputCrime.equals("/cancel")) {
+						System.out.println("작업을 취소합니다.\n");
+						return;
+					}
+					
+					inputCrime = Integer.parseInt(strInputCrime);
 					if(inputCrime < 1 || inputCrime > 7) {
 						System.out.println();
 						System.out.println("입력 범위를 벗어났습니다. 다시 입력해 주세요.");
@@ -94,7 +115,13 @@ public class EnterAction implements Action {
 			while(true) {
 				System.out.print("죄수구분(1.일반  2.요시찰  3.마약사범  4.사형수) = ");
 				try {
-					inputType = Integer.parseInt(sc.nextLine());
+					String strInputType = sc.nextLine();
+					if(strInputType.equals("/cancel")) {
+						System.out.println("작업을 취소합니다.\n");
+						return;
+					}
+					
+					inputType = Integer.parseInt(strInputType);
 					if(inputType < 1 || inputType > 4) {
 						System.out.println();
 						System.out.println("입력 범위를 벗어났습니다. 다시 입력해 주세요.");

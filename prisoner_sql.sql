@@ -2,7 +2,7 @@ create table prisoner(
    prinum varchar2(9) primary key,
    name varchar2(20) not null,      
    crime varchar2(20) not null,
-   type varchar2(20) not null,
+   prisoner_type varchar2(20) not null,
    penalty number not null,
    score number not null,
    work number,

@@ -1,3 +1,6 @@
-/view/
-/main/
 /action/
+/controller/
+/db/
+/main/
+/model/
+/view/
