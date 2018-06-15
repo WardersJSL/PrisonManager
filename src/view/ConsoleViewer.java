@@ -56,13 +56,8 @@ public class ConsoleViewer {
 	public static final int SEARCH_MENU_CRIME = 4;		// 죄목으로 검색
 	public static final int SEARCH_MENU_BACK = 5;		// 메인메뉴로 복귀
 	
-	private PrisonController prisonMgr;	// 교도소 관리자
 	private Scanner sc = new Scanner(System.in);
 	private Action action = null;
-	
-	public ConsoleViewer() {
-		prisonMgr = new PrisonController();
-	}
 	
 	public static void showMenu() { // 기본 메뉴
 		System.out.println();
