@@ -107,7 +107,7 @@ public class PrisonerDAO {
 			sql = "select * from prisoner where crime = ?";
 			break;
 		case FIELD_TYPE:
-			sql = "select * from prisoner where type = ?";
+			sql = "select * from prisoner where prisoner_type = ?";
 			break;
 		default:
 			System.err.println("오류: 잘못된 매개변수입니다.\nPrisonerDAO.selectPrisoners()");
@@ -129,7 +129,7 @@ public class PrisonerDAO {
 						rs.getString("name"),
 						rs.getString("prinum"),
 						rs.getString("crime"),
-						rs.getString("type"),
+						rs.getString("prisoner_type"),
 						rs.getInt("penalty"),
 						rs.getInt("score"),
 						rs.getInt("work"),
@@ -166,7 +166,7 @@ public class PrisonerDAO {
 								rs.getString("name"),
 								rs.getString("prinum"),
 								rs.getString("crime"),
-								rs.getString("type"),
+								rs.getString("prisoner_type"),
 								rs.getInt("penalty"),
 								rs.getInt("score"),
 								rs.getInt("work"),
@@ -205,7 +205,7 @@ public class PrisonerDAO {
 						rs.getString("name"),
 						rs.getString("prinum"),
 						rs.getString("crime"),
-						rs.getString("type"),
+						rs.getString("prisoner_type"),
 						rs.getInt("penalty"),
 						rs.getInt("score"),
 						rs.getInt("work"),
@@ -229,7 +229,7 @@ public class PrisonerDAO {
 	 * @return
 	 */
 	public boolean updatePrisoner(Prisoner modifiedPrisoner) {
-		String sql = "update prisoner set name = ?, crime = ?, type = ?, " + 
+		String sql = "update prisoner set name = ?, crime = ?, prisoner_type = ?, " + 
 				"penalty = ?, score = ?, work = ?, " + 
 				"ill = ?, punish = ? where prinum = ?";
 		
