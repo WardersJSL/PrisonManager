@@ -571,4 +571,89 @@ public class ConsoleViewer {
 			}
 		}
 	}
+	
+	/**
+	 * 검색 결과 출력
+	 * @param prisoner 죄수 정보
+	 */
+	public static void showSearchResult(Prisoner prisoner) {
+		System.out.println("----------------------------------------");
+		System.out.print(prisoner);
+		System.out.println("----------------------------------------");
+	}
+	
+	/**
+	 * 검색 결과 출력(오버로딩)
+	 * @param prisoners	죄수 정보 리스트
+	 * @param value		검색값
+	 * @param menuId	검색 코드
+	 */
+	public static void showSearchResult(ArrayList<Prisoner> prisoners, String value, int menuId) {
+		switch(menuId) {
+		case SEARCH_MENU_NAME:
+			System.out.println("========================================================================");
+			System.out.println("  죄수명단\t이름 : " + value);
+			System.out.println("========================================================================");
+			System.out.println("죄수번호\t\t죄수구분\t죄목\t형량\t\t노동량\t질병\t징계횟수");
+			System.out.println("------------------------------------------------------------------------");
+			for(int i = 0; i < prisoners.size(); i++) {
+				System.out.print(prisoners.get(i).getPrinum() + "\t");
+				System.out.print(prisoners.get(i).typeToString() + "\t");
+				System.out.print(prisoners.get(i).crimeToString() + "\t");
+				if(prisoners.get(i).getPenalty() / 12 > 0)
+					System.out.print(prisoners.get(i).getPenalty() / 12 + "년 ");
+				if(prisoners.get(i).getPenalty() % 12 > 0)
+					System.out.print(prisoners.get(i).getPenalty() % 12 + "개월");
+				System.out.print("\t");
+				System.out.print(prisoners.get(i).getWork() + "일\t");
+				System.out.print((prisoners.get(i).isIll() ? "있음" : "없음") + "\t");
+				System.out.println(prisoners.get(i).getPunish());
+			}
+			break;
+		case SEARCH_MENU_CRIME:
+			System.out.println("========================================================================");
+			System.out.println("  죄수명단\t죄목 : " + value);
+			System.out.println("========================================================================");
+			System.out.println("죄수번호\t\t이름\t죄수구분\t형량\t\t노동량\t질병\t징계횟수");
+			System.out.println("------------------------------------------------------------------------");
+			for(int i = 0; i < prisoners.size(); i++) {
+				System.out.print(prisoners.get(i).getPrinum() + "\t");
+				System.out.print(prisoners.get(i).getName() + "\t");
+				System.out.print(prisoners.get(i).typeToString() + "\t");
+				if(prisoners.get(i).getPenalty() / 12 > 0)
+					System.out.print(prisoners.get(i).getPenalty() / 12 + "년 ");
+				if(prisoners.get(i).getPenalty() % 12 > 0)
+					System.out.print(prisoners.get(i).getPenalty() % 12 + "개월");
+				System.out.print("\t");
+				System.out.print(prisoners.get(i).getWork() + "일\t");
+				System.out.print((prisoners.get(i).isIll() ? "있음" : "없음") + "\t");
+				System.out.println(prisoners.get(i).getPunish());
+			}
+			break;
+		case SEARCH_MENU_TYPE:
+			System.out.println("========================================================================");
+			System.out.println("  죄수명단\t죄수구분 : " + value);
+			System.out.println("========================================================================");
+			System.out.println("죄수번호\t\t이름\t죄목\t형량\t\t노동량\t질병\t징계횟수");
+			System.out.println("------------------------------------------------------------------------");
+			for(int i = 0; i < prisoners.size(); i++) {
+				System.out.print(prisoners.get(i).getPrinum() + "\t");
+				System.out.print(prisoners.get(i).getName() + "\t");
+				System.out.print(prisoners.get(i).crimeToString() + "\t");
+				if(prisoners.get(i).getPenalty() / 12 > 0)
+					System.out.print(prisoners.get(i).getPenalty() / 12 + "년 ");
+				if(prisoners.get(i).getPenalty() % 12 > 0)
+					System.out.print(prisoners.get(i).getPenalty() % 12 + "개월");
+				System.out.print("\t");
+				System.out.print(prisoners.get(i).getWork() + "일\t");
+				System.out.print((prisoners.get(i).isIll() ? "있음" : "없음") + "\t");
+				System.out.println(prisoners.get(i).getPunish());
+			}
+			break;
+		default:
+			System.err.println("오류: 잘못된 매개변수(ConsoleViewer.showSearchResult(ArrayList<Prisoner>, int))");
+		}
+		
+		System.out.println("========================================================================");
+	}
 }

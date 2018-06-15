@@ -188,7 +188,26 @@ public class Prisoner {
 		   return null;
 	   }
    }
-   
-   
+
+	@Override
+	public String toString() {
+		String str = "죄수번호 : " + prinum + "\n";
+		str += "이름 : " + name + "\n";
+		str += "죄목 : " + crimeToString() + "\n";		
+		str += "구분 : " + typeToString() + "\n";
+		str += "형량 : " + (penalty / 12 == 0 ? "" : penalty / 12 + "년 ") + 
+				(penalty % 12 == 0 ? "" : penalty % 12 + "개월") + "\n";
+		str += "상벌점 : " + score + "\n";
+		if(type != Type.EXECUTE)
+			str += "노동량 : " + work + "일\n";
+		str += "질병 : " + (ill ? "있음" : "없음") + "\n";
+		str += "징계횟수 : " + punish + "\n";
+		if(score == 80)
+			str += "가석방 심사 대상자\n";
+		if(score == -40)
+			str += "징계 대상자\n";
+		
+		return str;
+	}
 }
 
