@@ -21,7 +21,7 @@ public class IllAction implements Action {
 		System.out.println("질병유무 갱신 기능은 개발중입니다.\n");*/
 		
 		Prisoner prisoner = null;
-		char c = '\0';		// yes or no
+		String yesOrNo;
 		
 		
 		try {
@@ -29,19 +29,29 @@ public class IllAction implements Action {
 			String prisonerNo;
 			System.out.print("\n죄수번호 = ");
 			prisonerNo = sc.nextLine();
+			
+			if(prisonerNo.equals("/cancel")) {
+				System.out.println("작업을 취소합니다.\n");
+				return;
+			}
+			
 			prisoner = dao.selectPrisonerByPrinum(prisonerNo);
 			
 			while(true) {
 				System.out.print("질병이 있습니까?(y/n) = ");
-				c = (char)System.in.read();
-				System.in.read();
-				System.in.read();
-				if(c == 'Y' || c == 'y') {
+				yesOrNo = sc.nextLine();
+				
+				if(yesOrNo.equals("/cancel")) {
+					System.out.println("작업을 취소합니다.\n");
+					return;
+				}
+				
+				if(yesOrNo.equalsIgnoreCase("Y")) {
 					prisoner.setIll(true);
 					dao.updatePrisoner(prisoner);
 					break;
 				}
-				else if(c == 'N' || c == 'n') {
+				else if(yesOrNo.equalsIgnoreCase("N")) {
 					prisoner.setIll(false);
 					dao.updatePrisoner(prisoner);
 					break;

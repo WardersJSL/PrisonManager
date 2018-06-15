@@ -26,6 +26,11 @@ public class SearchByTypeAction implements Action {
 			while(x) {
 				System.out.print("구분 = ");
 				type = sc.nextLine();
+				
+				if(type.equals("/cancel")) {
+					System.out.println("작업을 취소합니다.\n");
+					return;
+				}
 
 				if(dao.selectPrisoners(type, PrisonerDAO.FIELD_TYPE) != null){
 					ArrayList<Prisoner> foundPrisoners = new ArrayList<Prisoner>();

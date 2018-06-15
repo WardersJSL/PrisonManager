@@ -33,6 +33,11 @@ public class SearchByCrimeAction implements Action {
 			while(x) {
 				System.out.print("죄목 = ");
 				crime = sc.nextLine();
+				
+				if(crime.equals("/cancel")) {
+					System.out.println("작업을 취소합니다.\n");
+					return;
+				}
 
 				if(dao.selectPrisoners(crime, PrisonerDAO.FIELD_CRIME) != null){
 					ArrayList<Prisoner> foundPrisoners = new ArrayList<Prisoner>();
@@ -60,7 +65,7 @@ public class SearchByCrimeAction implements Action {
 					}
 					if(x == true) {
 						System.out.println();
-						System.out.println("유효하지 않은 이름입니다. 메뉴로 돌아갑니다.");
+						System.out.println("유효하지 않은 이름입니다. 메뉴로 돌아갑니다.\n");
 						return;
 					}
 					

@@ -18,7 +18,7 @@ public class ShowAllAction implements Action {
 		
 		if(prisoners.size() < 1) {	// 죄수가 없으면 죄수 없음 메시지 출력
 			System.out.println();
-			System.out.println("죄수가 없습니다.");
+			System.out.println("죄수가 없습니다.\n");
 			return;
 		}
 			System.out.println();

@@ -26,6 +26,11 @@ public class SearchByNameAction implements Action {
 			while(x) {
 				System.out.print("이름 = ");
 				name = sc.nextLine();
+				
+				if(name.equals("/cancel")) {
+					System.out.println("작업을 취소합니다.\n");
+					return;
+				}
 
 				if(dao.selectPrisoners(name, PrisonerDAO.FIELD_NAME) != null){
 					ArrayList<Prisoner> foundPrisoners = new ArrayList<Prisoner>();

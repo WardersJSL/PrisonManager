@@ -16,7 +16,7 @@ public class SearchByPrinumAction implements Action {
 
 	@Override
 	public void execute(Scanner sc) {
-		String PrisonerNO = null;
+		String prisonerNO = null;
 		boolean x = true;
 		try {
 			System.out.println("\n3. 검색");
@@ -25,11 +25,16 @@ public class SearchByPrinumAction implements Action {
 			// 유효한 죄수번호를 입력할 때까지 계속 입력받기
 			while(x) {
 				System.out.print("죄수번호 = ");
-				PrisonerNO = sc.nextLine();
+				prisonerNO = sc.nextLine();
+				
+				if(prisonerNO.equals("/cancel")) {
+					System.out.println("작업을 취소합니다.\n");
+					return;
+				}
 
-				if(dao.selectPrisonerByPrinum(PrisonerNO)!=null){
+				if(dao.selectPrisonerByPrinum(prisonerNO)!=null){
 					ArrayList<Prisoner> foundPrisoners = new ArrayList<Prisoner>();
-					foundPrisoners.add(dao.selectPrisonerByPrinum(PrisonerNO));
+					foundPrisoners.add(dao.selectPrisonerByPrinum(prisonerNO));
 					
 					for(int i = 0; i < foundPrisoners.size(); i++) {
 						System.out.println();
