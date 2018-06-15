@@ -275,7 +275,9 @@ public class PrisonerDAO {
 		if(prisoner.getScore() > -40)
 			return false;
 		
-		prisoner.setScore(0);
+		prisoner.setPunish(prisoner.getPunish() + 1);	// 징계 횟수 1 증가
+		prisoner.setScore(0);							// 상벌점 초기화
+		
 		
 		return updatePrisoner(prisoner);
 	}
