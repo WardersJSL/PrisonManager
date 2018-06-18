@@ -19,6 +19,7 @@ public class GiveScoreAction implements Action {
 		int subMenu = 0;	// 상점인지 벌점인지를 결정하는 변수(1: 상점, 2: 벌점)
 		int maxGiving = 0;	// 부여 가능한 상점 또는 벌점의 상한
 		int scoreToAdd = 0;	// 부여할 상벌점
+		int maxScore = 0;	// 상점의 상한(사형수는 79, 나머지는 80)
 		String yesNo;		// yes or no
 		
 		try {
@@ -36,10 +37,15 @@ public class GiveScoreAction implements Action {
 			prisoner = dao.selectPrisonerByPrinum(prisonerNo);
 			
 			if(prisoner != null) {
+				// 사형수일 경우 상점은 79점까지, 나머지는 80점까지 부여 가능
+				if(prisoner.typeToString().equals("사형수"))
+					maxScore = 79;
+				else
+					maxScore = 80;
 				
 				// 상벌점의 상한 또는 하한일 경우 이를 알리고 상황에 맞게 처리
-				if(prisoner.getScore() == 80) {
-					System.out.println("현재 상점이 80으로, 벌점만 부여할 수 있습니다.");
+				if(prisoner.getScore() == maxScore) {
+					System.out.println("현재 상점이 " + maxScore + "으로, 벌점만 부여할 수 있습니다.");
 					while(true) {
 						System.out.print("벌점을 부여하시겠습니까(y/n) = ");
 						yesNo = sc.nextLine();
@@ -49,8 +55,6 @@ public class GiveScoreAction implements Action {
 							return;
 						}
 						
-						System.in.read();
-						System.in.read();
 						if(yesNo.equalsIgnoreCase("y")) {
 							subMenu = 2;
 							break;
@@ -75,8 +79,6 @@ public class GiveScoreAction implements Action {
 							return;
 						}
 						
-						System.in.read();
-						System.in.read();
 						if(yesNo.equalsIgnoreCase("y")) {
 							subMenu = 1;
 							break;
@@ -112,9 +114,9 @@ public class GiveScoreAction implements Action {
 					}
 				}				
 				
-				// 상점 부여 모드일 때의 입력 상한은 80 - (현재 상벌점)
+				// 상점 부여 모드일 때의 입력 상한은 maxScore - (현재 상벌점)
 				// 벌점 부여 모드일 때의 입력 상한은 (현재 상벌점) + 40
-				maxGiving = subMenu == 1 ? 80 - prisoner.getScore() : prisoner.getScore() + 40;
+				maxGiving = subMenu == 1 ? maxScore - prisoner.getScore() : prisoner.getScore() + 40;
 				
 				while(true) {
 					try {
@@ -146,7 +148,7 @@ public class GiveScoreAction implements Action {
 					System.out.println(prisoner.getName() + "(" + prisonerNo + ")에게 " + (subMenu == 1 ? "상점 " : "벌점 ") + scoreToAdd + "점을 부여하였습니다.");
 					
 					// 가석방 대상 또는 징계 대상이 되었을 경우 이를 알림
-					if(prisoner.getScore() == 80)
+					if(prisoner.getScore() == 80)	// 가석방 심사 대상 조건은 상점 80
 						System.out.println("가석방 심사 대상이 되었습니다.");
 					else if(prisoner.getScore() == -40)
 						System.out.println("징계 대상이 되었습니다.");

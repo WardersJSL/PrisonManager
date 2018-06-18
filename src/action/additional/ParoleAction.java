@@ -47,6 +47,7 @@ public class ParoleAction implements Action {
 			
 			// 일치하는 죄수번호가 있을 경우
 			if(prisoner != null) {
+				
 				// 가석방 심사 대상인지 검사
 				if(prisoner.getScore() != 80) {
 					System.out.println("가석방 심사 대상이 아닙니다. 작업을 취소합니다.\n");
