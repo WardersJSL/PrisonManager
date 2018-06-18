@@ -45,27 +45,30 @@ public class LaborAction implements Action {
 						while(true) {
 						System.out.print("노동량 = ");
 						String strLaborToAdd = sc.nextLine();
+						laborToAdd = Integer.parseInt(strLaborToAdd);
+						
 						if(strLaborToAdd.equals("/cancel")) {
 							System.out.println("작업을 취소합니다.\n");
 							return;
 						}
-						
-						laborToAdd = Integer.parseInt(strLaborToAdd);
-						
-							if(laborToAdd >= 1 && laborToAdd <= 99999) {
-								prisoner.setWork(laborToAdd);
+							if(prisoner.getWork()+laborToAdd < 99999) { // 노동량 업데이트
+								prisoner.setWork(prisoner.getWork()+laborToAdd);
 								dao.updatePrisoner(prisoner);
+								System.out.println();
+								System.out.println(prisoner.getName() + "(" + prisonerNo + ")에게 노동량 " + laborToAdd + "시간을 주었습니다.\n");
+								break;
 							} else {
 								System.out.println();
-								System.out.println("노동량은 1~99999시간 입니다. 다시 입력해주세요. ");
+								System.out.println("노동량을 초과하였습니다. 다시 입력해주세요. ");
+								System.out.println("현재 노동량 - " + prisoner.getWork());
+								System.out.println("할 수 있는 노동량 - " + (99999-prisoner.getWork()));
 								break;
 							}
 						}
-						// 노동량 업데이트
-						System.out.println();
-						System.out.println(prisoner.getName() + "(" + prisonerNo + ")에게 노동량 " + laborToAdd + "시간을 주었습니다.\n");
+						
 						
 					}
+					break;
 				}
 				
 				
