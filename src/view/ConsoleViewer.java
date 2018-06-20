@@ -243,18 +243,18 @@ public class ConsoleViewer {
 		
 		do {
 			try {
-			System.out.print("메뉴 = ");
-			menu = Integer.parseInt(sc.nextLine());
+				System.out.print("메뉴 = ");
+				menu = Integer.parseInt(sc.nextLine());
+				
+				if(menu >= 1 && menu <= menuNum) {
+					return menu;
+				} else {
+					System.out.println();
+					System.out.println("범위를 벗어났습니다.");
+				}
 			} catch (Exception e) {
 				System.out.println();
 				System.out.println("잘못된 입력입니다.");
-			}
-			
-			if(menu >= 1 && menu <= menuNum) {
-				return menu;
-			} else {
-				System.out.println();
-				System.out.println("범위를 벗어났습니다.");
 			}
 		} while(true);
 	}
@@ -276,6 +276,12 @@ public class ConsoleViewer {
 	 * @param menuId	검색 코드
 	 */
 	public static void showSearchResult(ArrayList<Prisoner> prisoners, String value, int menuId) {
+		// 표시할 정보가 없으면 메시지를 출력
+		if(prisoners == null || prisoners.size() < 1) {
+			System.out.println("검색 조건과 일치하는 죄수가 없습니다.\n");
+			return;
+		}
+		
 		switch(menuId) {
 		case SEARCH_MENU_NAME:
 			System.out.println("==================================================================================");
@@ -344,7 +350,7 @@ public class ConsoleViewer {
 				}
 			break;
 		default:
-			System.err.println("오류: 잘못된 매개변수(ConsoleViewer.showSearchResult(ArrayList<Prisoner>, int))");
+			System.err.println("오류: 잘못된 매개변수(ConsoleViewer.showSearchResult(ArrayList<Prisoner>, int))\n");
 		}
 		System.out.println("==================================================================================");
 		System.out.println();
