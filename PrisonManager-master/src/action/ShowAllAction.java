@@ -26,7 +26,6 @@ public class ShowAllAction implements Action {
 				for (int i = 0; i < prisoners.size(); i++) {
 				System.out.print(" " + prisoners.get(i).getPrinum() + "\t"+prisoners.get(i).getName() + "\t"
 							+ prisoners.get(i).crimeToString() + "\t" + prisoners.get(i).typeToString() +"\t");
-				
 				if(prisoners.get(i).getPenalty() > 11 && prisoners.get(i).getPenalty() % 12 != 0) {
 					  System.out.print(prisoners.get(i).getPenalty()/12 + "Y" + prisoners.get(i).getPenalty()%12 + "M" + "\t ");
 				}else if(prisoners.get(i).getPenalty() > 11 && prisoners.get(i).getPenalty() % 12 == 0) {

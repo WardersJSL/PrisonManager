@@ -63,7 +63,7 @@ public class EnterAction implements Action {
 			
 			// 형량 입력받기
 			while(true) {
-				System.out.print("형량(1~9999개월) = ");
+				System.out.print("형량(0~9999개월) = ");
 				try {
 					String strPanaltyMonths = sc.nextLine();
 					

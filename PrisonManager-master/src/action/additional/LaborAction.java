@@ -55,7 +55,7 @@ public class LaborAction implements Action {
 								prisoner.setWork(prisoner.getWork()+laborToAdd);
 								dao.updatePrisoner(prisoner);
 								System.out.println();
-								System.out.println(prisoner.getName() + "(" + prisonerNo + ")에게 노동량 " + laborToAdd + "일을 주었습니다.\n");
+								System.out.println(prisoner.getName() + "(" + prisonerNo + ")에게 노동량 " + laborToAdd + "시간을 주었습니다.\n");
 								break;
 							} else {
 								System.out.println();

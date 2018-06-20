@@ -50,7 +50,6 @@ public class ParoleAction implements Action {
 				
 				// 가석방 심사 대상인지 검사
 				if(prisoner.getScore() != 80) {
-					System.out.println();
 					System.out.println("가석방 심사 대상이 아닙니다. 작업을 취소합니다.\n");
 					return;
 				}

@@ -236,7 +236,6 @@ public class ConsoleViewer {
 			menuNum = MAX_SEARCH_MENU;
 			break;
 		default:
-			System.out.println();
 			System.out.println("잘못된 매개변수입니다.");
 			return 0;
 		}
@@ -278,75 +277,69 @@ public class ConsoleViewer {
 	public static void showSearchResult(ArrayList<Prisoner> prisoners, String value, int menuId) {
 		switch(menuId) {
 		case SEARCH_MENU_NAME:
-			System.out.println("==================================================================================");
+			System.out.println("========================================================================");
 			System.out.println("  죄수명단\t이름 : " + value);
-			System.out.println("==================================================================================");
-			System.out.println(" 죄수번호\t\t이름\t죄목\t구분\t형량\t 상벌점\t질병유무\t징벌횟수\t노동량");
-			System.out.println("----------------------------------------------------------------------------------");
-				for (int i = 0; i < prisoners.size(); i++) {
-				System.out.print(" " + prisoners.get(i).getPrinum() + "\t"+prisoners.get(i).getName() + "\t"
-							+ prisoners.get(i).crimeToString() + "\t" + prisoners.get(i).typeToString() +"\t");
-				if(prisoners.get(i).getPenalty() > 11 && prisoners.get(i).getPenalty() % 12 != 0) {
-					  System.out.print(prisoners.get(i).getPenalty()/12 + "Y" + prisoners.get(i).getPenalty()%12 + "M" + "\t ");
-				}else if(prisoners.get(i).getPenalty() > 11 && prisoners.get(i).getPenalty() % 12 == 0) {
-					  System.out.print(prisoners.get(i).getPenalty()/12 + "Y" + "\t ");
-				}else if(prisoners.get(i).getPenalty() <= 11) {
-					  System.out.print(prisoners.get(i).getPenalty() + "M" + "\t ");
-				}
-				System.out.print(prisoners.get(i).getScore() + "점" + "\t");
-				if(prisoners.get(i).isIll()) System.out.print("있음");
-					else System.out.print("없음"); 
-					System.out.print("\t" + prisoners.get(i).getPunish()+"번" + "\t" + prisoners.get(i).getWork() + "일\n");
-				}
+			System.out.println("========================================================================");
+			System.out.println("죄수번호\t\t죄수구분\t죄목\t형량\t\t노동량\t질병\t징계횟수");
+			System.out.println("------------------------------------------------------------------------");
+			for(int i = 0; i < prisoners.size(); i++) {
+				System.out.print(prisoners.get(i).getPrinum() + "\t");
+				System.out.print(prisoners.get(i).typeToString() + "\t");
+				System.out.print(prisoners.get(i).crimeToString() + "\t");
+				if(prisoners.get(i).getPenalty() / 12 > 0)
+					System.out.print(prisoners.get(i).getPenalty() / 12 + "년 ");
+				if(prisoners.get(i).getPenalty() % 12 > 0)
+					System.out.print(prisoners.get(i).getPenalty() % 12 + "개월");
+				System.out.print("\t");
+				System.out.print(prisoners.get(i).getWork() + "일\t");
+				System.out.print((prisoners.get(i).isIll() ? "있음" : "없음") + "\t");
+				System.out.println(prisoners.get(i).getPunish());
+			}
 			break;
 		case SEARCH_MENU_CRIME:
-			System.out.println("==================================================================================");
+			System.out.println("========================================================================");
 			System.out.println("  죄수명단\t죄목 : " + value);
-			System.out.println("==================================================================================");
-			System.out.println(" 죄수번호\t\t이름\t죄목\t구분\t형량\t 상벌점\t질병유무\t징벌횟수\t노동량");
-			System.out.println("----------------------------------------------------------------------------------");
-				for (int i = 0; i < prisoners.size(); i++) {
-				System.out.print(" " + prisoners.get(i).getPrinum() + "\t"+prisoners.get(i).getName() + "\t"
-							+ prisoners.get(i).crimeToString() + "\t" + prisoners.get(i).typeToString() +"\t");
-				if(prisoners.get(i).getPenalty() > 11 && prisoners.get(i).getPenalty() % 12 != 0) {
-					  System.out.print(prisoners.get(i).getPenalty()/12 + "Y" + prisoners.get(i).getPenalty()%12 + "M" + "\t ");
-				}else if(prisoners.get(i).getPenalty() > 11 && prisoners.get(i).getPenalty() % 12 == 0) {
-					  System.out.print(prisoners.get(i).getPenalty()/12 + "Y" + "\t ");
-				}else if(prisoners.get(i).getPenalty() <= 11) {
-					  System.out.print(prisoners.get(i).getPenalty() + "M" + "\t ");
-				}
-				System.out.print(prisoners.get(i).getScore() + "점" + "\t");
-				if(prisoners.get(i).isIll()) System.out.print("있음");
-					else System.out.print("없음"); 
-					System.out.print("\t" + prisoners.get(i).getPunish()+"번" + "\t" + prisoners.get(i).getWork() + "일\n");
-				}
+			System.out.println("========================================================================");
+			System.out.println("죄수번호\t\t이름\t죄수구분\t형량\t\t노동량\t질병\t징계횟수");
+			System.out.println("------------------------------------------------------------------------");
+			for(int i = 0; i < prisoners.size(); i++) {
+				System.out.print(prisoners.get(i).getPrinum() + "\t");
+				System.out.print(prisoners.get(i).getName() + "\t");
+				System.out.print(prisoners.get(i).typeToString() + "\t");
+				if(prisoners.get(i).getPenalty() / 12 > 0)
+					System.out.print(prisoners.get(i).getPenalty() / 12 + "년 ");
+				if(prisoners.get(i).getPenalty() % 12 > 0)
+					System.out.print(prisoners.get(i).getPenalty() % 12 + "개월");
+				System.out.print("\t");
+				System.out.print(prisoners.get(i).getWork() + "일\t");
+				System.out.print((prisoners.get(i).isIll() ? "있음" : "없음") + "\t");
+				System.out.println(prisoners.get(i).getPunish());
+			}
 			break;
 		case SEARCH_MENU_TYPE:
-			System.out.println("==================================================================================");
+			System.out.println("========================================================================");
 			System.out.println("  죄수명단\t죄수구분 : " + value);
-			System.out.println("==================================================================================");
-			System.out.println(" 죄수번호\t\t이름\t죄목\t구분\t형량\t 상벌점\t질병유무\t징벌횟수\t노동량");
-			System.out.println("----------------------------------------------------------------------------------");
-				for (int i = 0; i < prisoners.size(); i++) {
-				System.out.print(" " + prisoners.get(i).getPrinum() + "\t"+prisoners.get(i).getName() + "\t"
-							+ prisoners.get(i).crimeToString() + "\t" + prisoners.get(i).typeToString() +"\t");
-				if(prisoners.get(i).getPenalty() > 11 && prisoners.get(i).getPenalty() % 12 != 0) {
-					  System.out.print(prisoners.get(i).getPenalty()/12 + "Y" + prisoners.get(i).getPenalty()%12 + "M" + "\t ");
-				}else if(prisoners.get(i).getPenalty() > 11 && prisoners.get(i).getPenalty() % 12 == 0) {
-					  System.out.print(prisoners.get(i).getPenalty()/12 + "Y" + "\t ");
-				}else if(prisoners.get(i).getPenalty() <= 11) {
-					  System.out.print(prisoners.get(i).getPenalty() + "M" + "\t ");
-				}
-				System.out.print(prisoners.get(i).getScore() + "점" + "\t");
-				if(prisoners.get(i).isIll()) System.out.print("있음");
-					else System.out.print("없음"); 
-					System.out.print("\t" + prisoners.get(i).getPunish()+"번" + "\t" + prisoners.get(i).getWork() + "일\n");
-				}
+			System.out.println("========================================================================");
+			System.out.println("죄수번호\t\t이름\t죄목\t형량\t\t노동량\t질병\t징계횟수");
+			System.out.println("------------------------------------------------------------------------");
+			for(int i = 0; i < prisoners.size(); i++) {
+				System.out.print(prisoners.get(i).getPrinum() + "\t");
+				System.out.print(prisoners.get(i).getName() + "\t");
+				System.out.print(prisoners.get(i).crimeToString() + "\t");
+				if(prisoners.get(i).getPenalty() / 12 > 0)
+					System.out.print(prisoners.get(i).getPenalty() / 12 + "년 ");
+				if(prisoners.get(i).getPenalty() % 12 > 0)
+					System.out.print(prisoners.get(i).getPenalty() % 12 + "개월");
+				System.out.print("\t");
+				System.out.print(prisoners.get(i).getWork() + "일\t");
+				System.out.print((prisoners.get(i).isIll() ? "있음" : "없음") + "\t");
+				System.out.println(prisoners.get(i).getPunish());
+			}
 			break;
 		default:
 			System.err.println("오류: 잘못된 매개변수(ConsoleViewer.showSearchResult(ArrayList<Prisoner>, int))");
 		}
-		System.out.println("==================================================================================");
-		System.out.println();
+		
+		System.out.println("========================================================================");
 	}
 }

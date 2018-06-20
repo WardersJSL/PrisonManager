@@ -17,7 +17,7 @@ public class SearchByPrinumAction implements Action {
 
 	@Override
 	public void execute(Scanner sc) {
-		String prisonerNO;
+		String prisonerNO = null;
 		boolean x = true;
 		try {
 			System.out.println("\n3. 검색");
@@ -34,9 +34,9 @@ public class SearchByPrinumAction implements Action {
 				}
 
 				if(dao.selectPrisonerByPrinum(prisonerNO)!=null){
-		               Prisoner foundPrisoner = dao.selectPrisonerByPrinum(prisonerNO);
-		               ConsoleViewer.showSearchResult(foundPrisoner);
-		               x = false;
+					Prisoner foundPrisoner = dao.selectPrisonerByPrinum(prisonerNO);
+					ConsoleViewer.showSearchResult(foundPrisoner);
+					x = false;
 					
 				}else if(x == true) {
 					System.out.println();
